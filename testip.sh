@@ -25,9 +25,5 @@ res=`ping -c 4 $line|grep rtt|awk '{print $4}'|awk -F "/" '{print $2}'`
 num=${res%.*}
 if [ $num -lt 150 ];then
 echo ping \"$line\" \t\t ok $num\m\s
-else
-echo ping \"$line\" \t\t fail $num\m\s
 fi
 done
-
-
