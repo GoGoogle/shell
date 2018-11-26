@@ -24,7 +24,8 @@ res=`ping -c 4 $line|grep rtt|awk '{print $4}'|awk -F "/" '{print $2}'`
 num=${res%.*}
 if [ $num -lt 50 ];then
 echo ping \"$line\" \t\t ok $num\m\s
-else
-echo ping \"$line\" \t\t fail $num\m\s
+# 默认只显示低于50ms的ok结果，去掉下列两行注释即可得到所有结果
+# else
+# echo ping \"$line\" \t\t fail $num\m\s
 fi
 done
