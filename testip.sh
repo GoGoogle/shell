@@ -21,7 +21,7 @@ fi
 ## do ping
 for line in `cat $file`
 do
-res=`ping -c 4 $line|grep rtt|awk '{print $4}'|awk -F "/" '{print $2}'`
+res=`ping -c 4 $line|grep avg|awk '{print $4}'|awk -F "/" '{print $2}'`
 num=${res%.*}
 if [ $num -lt 150 ];then
 echo ping \"$line\" \t\t ok $num\m\s
