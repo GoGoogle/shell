@@ -2,7 +2,9 @@
 一些Linux脚本
 # testip
 测试IP的脚本
+
 PING 4 次，取平均值res 的整数num，小于150ms的显示ok，否则显示fail。
+
 用法：testip.sh ip.txt列表文件（一行一个IPV4）
 
 # update_eav
