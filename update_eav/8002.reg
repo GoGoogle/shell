@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\ESET\ESET Security\CurrentVersion\Plugins\01000400\Profiles\@My profile]
+"SelectedServer"="http://192.168.1.100:8002/list/offline/"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\ESET\ESET Security\CurrentVersion\Plugins\01000400\UI_Settings\Servers]
+"Server_0"="http://192.168.1.100:8002/list/offline/"
