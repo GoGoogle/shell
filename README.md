@@ -1,5 +1,8 @@
 # shell
 一些Linux脚本
+# Cisco
+关于思科的一些笔记，其实有很多很多，慢慢的搬上来
+
 # testip
 测试IP的脚本
 
