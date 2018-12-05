@@ -1,0 +1,23 @@
+#设置时间
+clock set 18:56:00 Dec 5 2018
+
+#进入配置模式
+conf t
+
+#配置时区
+clock timezone GMT 8 0
+
+#配置FTP用户名及密码
+ip ftp username bmwcto
+ip ftp password 12345
+
+#退出配置模式
+end
+
+#保存配置
+wr
+
+#备份当前配置到FTP为地址为192.168.1.2上的文件名为C2960.bak
+copy running-config ftp
+192.168.1.2
+C2960.bak
