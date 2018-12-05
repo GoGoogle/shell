@@ -5,6 +5,7 @@
 病毒库更新
 
 目录结构：
+<pre>
 soft/list
 ├── 8002.reg
 ├── eav_bak
@@ -19,3 +20,4 @@ soft/list
 │   └── update.ver
 ├── offline_update_eav.zip
 └── update_eav.sh
+</pre>
