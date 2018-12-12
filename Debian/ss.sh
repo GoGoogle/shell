@@ -22,8 +22,9 @@ systemctl status shadowsocks-libev
 #安装CURL
 apt install curl
 
-#OPENVZ安装BBR
+#KMS安装BBR
 wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+#OPENVZ安装BBR
 curl https://raw.githubusercontent.com/linhua55/lkl_study/master/get-rinetd.sh | bash
 cat /etc/rinetd-bbr.conf
 exit
