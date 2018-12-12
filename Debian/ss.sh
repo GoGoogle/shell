@@ -27,7 +27,17 @@ wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
 #OPENVZ安装BBR
 curl https://raw.githubusercontent.com/linhua55/lkl_study/master/get-rinetd.sh | bash
 cat /etc/rinetd-bbr.conf
-exit
+
+#BBR相关（OPENVZ）
+4. Generate /etc/systemd/system/rinetd-bbr.service
+4. Enable rinetd-bbr Service
+Created symlink /etc/systemd/system/multi-user.target.wants/rinetd-bbr.service → /etc/systemd/system/rinetd-bbr.service.
+5. Start rinetd-bbr Service
+rinetd-bbr started.
+443 speed up completed.
+vi /etc/rinetd-bbr.conf as needed.
+killall -9 rinetd-bbr for restart.
+
 
 #SS配置文件案例
 {
