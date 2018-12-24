@@ -12,9 +12,11 @@ chmod 777 /etc/rsyncd.secrets;echo "bmw_backup:1234">/etc/rsyncd.secrets && chmo
 
 #客户端：
 chmod 777 /root/.rsync.passwd;echo 1234>/root/.rsync.passwd && chmod 600 /root/.rsync.passwd
+#每分钟同步一下（仅用于测试）crontab -e
+*/1 * * * * /usr/bin/rsync -avz bmw_backup@127.0.0.1::ftp /root/ftp2/ --password-file=/root/.rsync.passwd
 
 #本机测试
-rsync -avz lc_backup@127.0.0.1::ftp /root/ftp2/ --password-file=/root/.rsync.passwd
+rsync -avz bmw_backup@127.0.0.1::ftp /root/ftp2/ --password-file=/root/.rsync.passwd
 
 #配置文件：
 vim /etc/rsyncd.conf
@@ -48,5 +50,4 @@ log file=/var/log/rsyncd
         refuse options = checksum dry-run
         dont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz
 
-#每分钟同步一下（仅用于测试）
-*/1 * * * * /usr/bin/rsync -avz bmw_backup@127.0.0.1::ftp /root/ftp2/ --password-file=/root/.rsync.passwd
+
