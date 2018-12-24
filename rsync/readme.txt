@@ -1,4 +1,9 @@
 ## 使用rsync协议进行文件同步
+## 完全同步：无差异同步（客户端有，服务端就有；客户端没有，服务端就没有）---谨慎使用
+rsync -avz --delete lc_backup@127.0.0.1::ftp /root/ftp2/ --password-file=/root/.rsync.passwd
+
+## 安装rsync服务
+apt install -y rsync
 
 #服务端：
 mkdir /root/ftp
