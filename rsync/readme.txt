@@ -50,4 +50,4 @@ log file=/var/log/rsyncd
         refuse options = checksum dry-run
         dont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz
 
-
+参考：https://blog.51cto.com/jinlong/2091904
