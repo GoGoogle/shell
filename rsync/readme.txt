@@ -44,4 +44,4 @@ log file=/var/log/rsyncd
         dont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz
 
 #每分钟同步一下（仅用于测试）
-*/1 * * * * /usr/bin/rsync -avz lc_backup@127.0.0.1::ftp /root/ftp2/ --password-file=/root/.rsync.passwd
+*/1 * * * * /usr/bin/rsync -avz bmw_backup@127.0.0.1::ftp /root/ftp2/ --password-file=/root/.rsync.passwd
