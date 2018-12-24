@@ -58,7 +58,7 @@ chmod 777 /root/.rsync.passwd;echo 1234>/root/.rsync.passwd && chmod 600 /root/.
 
 #本机测试
 rsync -avz bmw_backup@127.0.0.1::ftp /root/ftp2/ --password-file=/root/.rsync.passwd
-
+#若本机测试没有问题，就得查防火墙和端口，默认端口873通不通
 
 
 参考：https://blog.51cto.com/jinlong/2091904
