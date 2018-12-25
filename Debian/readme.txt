@@ -26,3 +26,26 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 locale-gen en_US.UTF-8
 
 ##遇到killed的可能是内存不足了
+
+
+##配置ZSH主题
+
+#复制主题文件
+cp /root/.oh-my-zsh/themes/amuse.zsh-theme /root/.oh-my-zsh/themes/0myamuse.zsh-theme
+
+#编辑主题文件
+vim /root/.oh-my-zsh/themes/0myamuse.zsh-theme
+
+PROMPT='
+%{$fg_bold[blue]%}%n%{$reset_color%}@[%M] %{$fg_bold[green]%}%d%{$reset_color%}/$(git_prompt_info) ⌚ %{$fg_bold[red]%}%D %*%{$reset_color%}
+$ '
+
+#编辑zshrc环境，设置主题
+vim ~/.zshrc
+ZSH_THEME="0myamuse"
+
+#配置程序别名
+alias fuck=/usr/bin/proxychains4
+
+#应用主题
+source ~/.zshrc
