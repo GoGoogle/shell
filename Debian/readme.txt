@@ -28,7 +28,7 @@ locale-gen en_US.UTF-8
 ##遇到killed的可能是内存不足了
 
 
-##配置ZSH主题
+##配置ZSH
 apt install -y zsh git
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
