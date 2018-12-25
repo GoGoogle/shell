@@ -49,3 +49,6 @@ alias fuck=/usr/bin/proxychains4
 
 #应用主题
 source ~/.zshrc
+
+#默认使用ZSH
+chsh -s /bin/zsh
