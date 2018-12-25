@@ -29,6 +29,8 @@ locale-gen en_US.UTF-8
 
 
 ##配置ZSH主题
+apt install -y zsh git
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 #复制主题文件
 cp /root/.oh-my-zsh/themes/amuse.zsh-theme /root/.oh-my-zsh/themes/0myamuse.zsh-theme
