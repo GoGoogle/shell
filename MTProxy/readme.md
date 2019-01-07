@@ -21,7 +21,7 @@ screen -ls
 
 screen -S mtp
 
-./mtproto-proxy -u nobody -p 8888 -H 443 -S <secret> --aes-pwd proxy-secret proxy-multi.conf -M 1
+./mtproto-proxy -u nobody -p 8888 -H 443 -S secret --aes-pwd proxy-secret proxy-multi.conf -M 1
 
-##请将-p 8888 -H 443 -S <secret>替换为自己的，分别为本地端口号，用于链接服务器的端口，32位16进制密钥
+##请将-p 8888 -H 443 -S secret替换为自己的，分别为本地端口号，用于链接服务器的端口，32位16进制密钥
 
