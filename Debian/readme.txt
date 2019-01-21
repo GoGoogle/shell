@@ -54,3 +54,10 @@ source ~/.zshrc
 
 #默认使用ZSH
 chsh -s /bin/zsh
+
+
+#安装socks代理服务器
+apt install -y dante-server
+
+#分别是开始|停止|重启|刷新配置|查看状态|不懂|添加用户|删除用户|又不懂|查看配置文件|升级
+/etc/init.d/sockd {start|stop|restart|reload|status|state|adduser|deluser|tail|conf|update}
