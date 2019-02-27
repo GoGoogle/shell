@@ -45,3 +45,6 @@ CTRL+X退出
 #scan_ssid:连接隐藏WiFi时需要指定该值为1
 #key_mgmt:如果没有密码，需要指定key_mgmt为NONE
 #country:设置国家代码，方便选择无线频段
+
+##重启
+sudo reboot
