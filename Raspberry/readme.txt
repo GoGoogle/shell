@@ -49,7 +49,7 @@ CTRL+X退出
 ##重启
 sudo reboot
 
-
+##安装Kodi
 sudo apt update
 sudo apt install kodi
 sudo apt install kodi-peripheral-joystick kodi-pvr-iptvsimple kodi-inputstream-adaptive kodi-inputstream-rtmp
@@ -80,18 +80,18 @@ amixer cset numid=3 2
 将输出设置为1将切换到模拟信号（也就是耳机接口）。
 默认的设置为0，代表自动选择。
 
-
+##安装Python3.7.2
 sudo apt-get update -y
 sudo apt-get install build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libffi-dev -y
-wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz
-tar xf Python-3.7.0.tar.xz
-cd Python-3.7.0
+wget https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tar.xz
+tar xf Python-3.7.2.tar.xz
+cd Python-3.7.2
 ./configure
 make -j 4
 sudo make altinstall
 cd ..
-sudo rm -r Python-3.7.0
-rm Python-3.7.0.tar.xz
+sudo rm -r Python-3.7.2
+rm Python-3.7.2.tar.xz
 sudo apt-get --purge remove build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libffi-dev -y
 sudo apt-get autoremove -y
 sudo apt-get clean
