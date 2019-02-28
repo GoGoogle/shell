@@ -48,3 +48,27 @@ CTRL+X退出
 
 ##重启
 sudo reboot
+
+
+sudo apt update
+sudo apt install kodi
+sudo apt install kodi-peripheral-joystick kodi-pvr-iptvsimple kodi-inputstream-adaptive kodi-inputstream-rtmp
+sudo tee -a /lib/systemd/system/kodi.service <<_EOF_
+[Unit]
+Description = Kodi Media Center
+After = remote-fs.target network-online.target
+Wants = network-online.target
+
+[Service]
+User = pi
+Group = pi
+Type = simple
+ExecStart = /usr/bin/kodi
+Restart = on-abort
+RestartSec = 5
+
+[Install]
+WantedBy = multi-user.target
+_EOF_
+
+sudo service kodi start
