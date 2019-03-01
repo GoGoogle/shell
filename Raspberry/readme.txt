@@ -95,3 +95,38 @@ rm Python-3.7.2.tar.xz
 sudo apt-get --purge remove build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libffi-dev -y
 sudo apt-get autoremove -y
 sudo apt-get clean
+
+##挂载移动硬盘
+// 硬盘接入USB口后，系统不会自动挂载，查看已连接的储存设备
+sudo fdisk-l
+// 找到我们所需设备的名称(sda1)，格式化为ext4
+sudo mkfs.ext4 /dev/sda1
+
+// 命令查看硬件设备，并找到我们所需设备的名称。
+sudo fdisk -l
+
+// 新建一个挂载目录文件夹
+sudo mkdir /media/piusb/
+// 将设备的分区挂载到该目录上面
+sudo mount /dev/sda1 /media/piusb
+// 这时就已经挂载好了，也可以用以下命令查看挂载情况：
+df-h
+
+
+// 安装 nfts 支持
+sudo apt-get install -y ntfs-3g
+// 加载内核支持
+modprobe fuse
+
+// 查看要指定加载储存设备的UUID
+sudo blkid
+
+// 编辑设备管理
+sudo vim /etc/fstab
+// 在最后一行添加你要挂载的设备
+// 针对非 ntfs 格式的移动硬盘
+UUID=3EFBF3DF518ACC17 /media/piusb auto defaults,noexec,umask=0000 0 0
+
+// 针对 ntfs 格式的移动硬盘
+UUID=927E8B977E8B72B1 /media/piusb1 ntfs-3g defaults,noexec,umask=0000 0 0
+UUID=5E20C27E20C25D21 /media/piusb2 ntfs-3g defaults,noexec,umask=0000 0 0
