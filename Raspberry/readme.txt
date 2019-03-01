@@ -130,3 +130,10 @@ UUID=3EFBF3DF518ACC17 /media/piusb auto defaults,noexec,umask=0000 0 0
 // 针对 ntfs 格式的移动硬盘
 UUID=927E8B977E8B72B1 /media/piusb1 ntfs-3g defaults,noexec,umask=0000 0 0
 UUID=5E20C27E20C25D21 /media/piusb2 ntfs-3g defaults,noexec,umask=0000 0 0
+
+
+##自动挂载SMB共享
+sudo nano /etc/fstab
+//192.168.X.X/share /home/pi/share cifs username=XXX,password=XXX,vers=1.0 0 0
+重启或键入
+sudo mount -a
