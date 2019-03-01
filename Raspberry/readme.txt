@@ -137,3 +137,7 @@ sudo nano /etc/fstab
 //192.168.X.X/share /home/pi/share cifs username=XXX,password=XXX,vers=1.0 0 0
 重启或键入
 sudo mount -a
+
+
+卸载已挂载的存储设备
+sudo umount /media/usb
