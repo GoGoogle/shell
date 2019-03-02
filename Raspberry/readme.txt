@@ -3,6 +3,9 @@ tzselect
 
 ##设置时区：
 TZ='Asia/Shanghai'; export TZ
+或扔
+vim ~/.bashrc
+export TZ='Asia/Shanghai'
 
 ##安装同步：
 sudo apt-get install ntpdate
