@@ -1,4 +1,5 @@
-#当线路不称定时，每分钟测试网络情况
+#当线路不称定时，记录其每次断网的时间
+#摘自https://www.goxxk.com/?p=916
 
 logfile=/home/allvpay/netlog/$(date +%Y-%m-%d).log 
 ##断网时将断网的时间和丢包情况写入日志
