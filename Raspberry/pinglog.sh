@@ -28,4 +28,4 @@ do
     echo `date '+%Y-%m-%d %H:%M:%S'` : send package $send, received package $received, lost package $lost >>$logfile
 ##将当前时间和发送包数、接收包数和丢失包数写入监控日志文件
   fi
-done 
+done
