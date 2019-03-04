@@ -12,6 +12,8 @@ monitor_ip=114.114.114.114
 
 while [ "$startday" = "$(date +%Y-%m-%d)" ]
 ##该程序每天凌晨自动执行，过午夜就退出
+#while true
+##该程序一直循环
 do
   pinglog=`ping -c 60 $monitor_ip | grep received | awk '{print $1,$4}'`
 ##每60秒执行一次，取发送的包数和接收的包数
