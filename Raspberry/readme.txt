@@ -146,3 +146,25 @@ sudo mount -a
 
 卸载已挂载的存储设备
 sudo umount /media/usb
+
+
+##建立FTP服务器S
+##用户名为upload
+sudo apt-get -y install pure-ftpd
+sudo groupadd ftpgroup
+sudo useradd ftpuser -g ftpgroup -s /sbin/nologin -d /dev/null
+sudo mkdir /home/pi/FTP
+sudo chown -R ftpuser:ftpgroup /home/pi/FTP
+sudo pure-pw useradd upload -u ftpuser -g ftpgroup -d /home/pi/FTP -m
+##此处要输入upload用户的FTP密码
+
+sudo pure-pw mkdb
+sudo ln -s /etc/pure-ftpd/conf/PureDB /etc/pure-ftpd/auth/60puredb
+sudo service pure-ftpd restart
+
+##相关的配置文件路径
+/etc/pure-ftpd/conf
+
+##参考链接
+https://www.raspberrypi.org/documentation/remote-access/ftp.md
+##建立FTP服务器E
