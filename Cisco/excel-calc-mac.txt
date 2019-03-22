@@ -1,0 +1,16 @@
+##Excel转换MAC地址格式
+
+#原本格式
+C2=34-96-72-ac-39-96
+
+#Linux格式方法
+34:96:72:ac:39:96
+=SUBSTITUTE(C2,"-",":")
+
+#Cisco格式方法1
+3496.72ac.3996
+=REPLACE(REPLACE(REPLACE(SUBSTITUTE(C2,"-","."),3,1,""),8,1,""),13,1,"")
+
+#Cisco格式方法2
+3496.72ac.3996
+=SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(C2,"-","."),".","",1),".","",2),".","",3)
