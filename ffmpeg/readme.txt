@@ -3,7 +3,7 @@
 ffmpeg -i sample.avi -q:a 0 -map a sample.mp3
 
 ##快速视频剪辑
-#从54分55秒开始后120秒内容
+#从54分55秒开始后120秒内容，精确到毫秒：00:00:00.888
 ffmpeg -ss 00:54:55 -i in.mp4 -t 120 -vcodec copy -acodec copy out.mp4
 
 #从1分05秒开始后120秒内容
