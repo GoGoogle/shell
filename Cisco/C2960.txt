@@ -21,3 +21,10 @@ wr
 copy running-config ftp
 192.168.1.2
 C2960.bak
+
+
+#按网卡地址（MAC）查找接口
+sh mac address-table | in 3496.72ac.3996
+
+#显示接口说明
+sh int description
