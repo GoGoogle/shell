@@ -1,5 +1,10 @@
 ##更改时区：
 tzselect
+或
+sudo raspi-config
+选择Localisation Options
+选择ChangeTimezone
+
 
 ##设置时区：
 TZ='Asia/Shanghai'; export TZ
