@@ -21,7 +21,7 @@ choice /t 10 /d y /n >nul
 ffmpeg -y -i 06.mp4 -c:v libx264 -preset medium -b:v 1100k -s 960x540 -pass 1 -c:a aac -b:a 160k -f mp4 NUL && ^ffmpeg -i 06.mp4 -c:v libx264 -preset medium -b:v 1100k -s 960x540 -pass 2 -c:a aac -b:a 160k EP06.mp4
 
 
-## 把FFMPEG转码汇集成BAT文件：
+## 把FFMPEG按视频预计文件大小转码汇集成BAT文件：
 
 @echo off
 setlocal enabledelayedexpansion
