@@ -27,7 +27,7 @@ do
 		then
 			echo `date '+%Y-%m-%d %H:%M:%S'` : send package $send, received package $received, lost package $lost >>$logfile/wq_$(date +%Y-%m-%d).log
 			##将当前时间和发送包数、接收包数和丢失包数写入监控日志文件
-			tcpdump -s 100 -i eth0 -vvv dst $monitor_ip and icmp -w $logfile/cap_$monitor_ip.cap
+			ping -c 60 $monitor_ip;tcpdump -s 0 -c 100 -i eth0 -vvv dst $monitor_ip and icmp -w $logfile/cap_$monitor_ip.cap
       ##进行抓包，最大长度为100
 	fi
 done
