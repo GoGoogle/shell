@@ -1,6 +1,9 @@
 #当线路不称定时，记录其每次断网的时间
 #摘自https://www.goxxk.com/?p=916
 
+#sudo chmod 755 /usr/sbin/tcpdump
+##让普通用户也能使用tcpdump
+
 ##/bash/bin
 logfile=/home/pi/netlog
 ##断网时将断网的时间和丢包情况写入日志路径
