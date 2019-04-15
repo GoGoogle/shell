@@ -166,6 +166,19 @@ sudo chown -R ftpuser:ftpgroup /home/pi/FTP
 sudo pure-pw useradd upload -u ftpuser -g ftpgroup -d /home/pi/FTP -m
 ##此处要输入upload用户的FTP密码
 
+##修改用户upload的密码
+sudo pure-pw passwd upload
+
+##修改用户test的上传路径为/var/www/web
+sudo pure-pw usermod test -d /var/www/web
+
+##生成（刷新）数据库文件
+sudo pure-pw mkdb
+
+##查看用户信息
+sudo pure-pw show upload
+
+
 sudo pure-pw mkdb
 sudo ln -s /etc/pure-ftpd/conf/PureDB /etc/pure-ftpd/auth/60puredb
 sudo service pure-ftpd restart
