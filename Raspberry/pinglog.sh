@@ -31,7 +31,7 @@ do
 			echo `date '+%Y-%m-%d %H:%M:%S'` : send package $send, received package $received, lost package $lost >>$logfile/$monitor_ip_$(date +%Y-%m-%d).log
 			##将当前时间和发送包数、接收包数和丢失包数写入监控日志文件
 			/usr/sbin/tcpdump -s 0 -c 3 -i wlan0 -vvv host $monitor_ip -n -w $logfile/$monitor_ip_$(date +%H%M%S).cap & ping -c 1000 $monitor_ip
-      			##进行抓包，最大长度为0(自适应)，抓到10个icmp包就起来成cap文件
+      			##从wlan0接口进行抓包，最大长度为0(自适应)，抓到3个icmp包就起来成cap文件
 	fi
 done
 
