@@ -87,6 +87,9 @@ export https_proxy=$proxy
 export no_proxy="localhost, 127.0.0.1, ::1"
 
 ##安装EFB
+#不装ffmpeg就收不到语音消息
+apt install ffmpeg
+
 pip3 update
 pip3 install libwebp
 pip3 install libmagic
