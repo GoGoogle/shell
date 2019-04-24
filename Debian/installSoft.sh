@@ -28,7 +28,7 @@ apt-get install build-essential checkinstall
 apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev     libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev
 wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
 tar xzf Python-3.7.3.tgz
-mv Python-3.7.3.tgz /usr/src
+mv Python-3.7.3 /usr/src
 cd /usr/src/Python-3.7.3
 ./configure --prefix=/usr/Python37 --with-ssl
 make && make install
