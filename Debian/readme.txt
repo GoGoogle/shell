@@ -88,6 +88,7 @@ chsh -s /bin/zsh
 
 
 #安装socks代理服务器
+#https://github.com/GoGoogle/danted
 apt install -y dante-server
 
 #分别是开始|停止|重启|刷新配置|查看状态|不懂|添加用户|删除用户|又不懂|查看配置文件|升级
