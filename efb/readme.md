@@ -4,7 +4,7 @@ ii  libwebp6:amd64                0.5.2-1
 ii  libwebpmux2:amd64             0.5.2-1
 ii  ffmpeg                        7:3.2.12-1~deb9u1
 ```
-以上是动态库，以下是pip库（反正我是这么叫
+以上是动态链接库，以下是pip库
 ```
 efb-telegram-master==2.0.0b20
 efb-wechat-slave==2.0.0a18
