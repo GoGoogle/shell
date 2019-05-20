@@ -43,3 +43,24 @@ pip3 install requests==2.22.0
 pip3 install urllib3==1.25.2
 pip3 install python-telegram-bot==10.1.0
 ```
+
+批量卸载/安装
+`
+pip3 uninstall -r efb-unpip.txt
+`
+
+efb-unpip.txt:
+```
+requests
+urllib3
+python-telegram-bot
+```
+`
+pip3 install -r efb-pip.txt
+`
+efb-pip.txt:
+```
+requests==2.22.0
+urllib3==1.25.2
+python-telegram-bot==10.1.0
+```
