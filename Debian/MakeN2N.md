@@ -1,10 +1,10 @@
 内网A客户端A：
 
-`edge -d edgeA -a 10.1.1.2 -c name -k password -l 1.1.1.1:4321 -m ab:cd:22:33:44:55`
+`edge -d edge0 -a 10.1.1.2 -c name -k password -l 1.1.1.1:4321 -m ab:cd:22:33:44:55`
 
 内网B客户端B：
 
-`edge -d edgeB -a 10.1.1.2 -c name -k password -l 1.1.1.1:4321 -m ab:cd:22:33:44:55`
+`edge -d edge0 -a 10.1.1.2 -c name -k password -l 1.1.1.1:4321 -m ab:cd:22:33:44:55`
 
 服务端(假设IP为1.1.1.1)：
 
