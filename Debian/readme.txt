@@ -98,3 +98,43 @@ apt install -y dante-server
 vim key
 chmod 700 key
 ssh -i key root@ip
+
+##SSH用密钥登录
+
+#生成SSH密钥对
+ssh-keygen -t rsa
+Generating public/private rsa key pair.
+#建议直接回车使用默认路径
+Enter file in which to save the key (/root/.ssh/id_rsa): 
+#输入密码短语（留空则直接回车）
+Enter passphrase (empty for no passphrase): 
+#重复密码短语
+Enter same passphrase again: 
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+aa:8b:61:13:38:ad:b5:49:ca:51:45:b9:77:e1:97:e1 root@localhost.localdomain
+The key's randomart image is:
+
+#编辑sshd_config文件
+vim /etc/ssh/sshd_config
+#禁用密码验证
+PasswordAuthentication no
+#启用密钥验证
+RSAAuthentication yes
+PubkeyAuthentication yes
+#指定公钥数据库文件
+AuthorsizedKeysFile .ssh/authorized_keys
+
+
+可以在== 后加入用户注释标识方便管理
+echo 'ssh-rsa XXXX' >>/root/.ssh/authorized_keys
+# 复查
+cat /root/.ssh/authorized_keys
+
+#复制公钥到无密码登录的服务器上,22端口改变可以使用下面的命令
+#ssh-copy-id -i ~/.ssh/id_rsa.pub "-p 10022 user@server"
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.15.241
+
+systemctl restart sshd
+
