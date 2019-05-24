@@ -53,3 +53,13 @@ choice /t %t% /d y /n >nul
 ffmpeg -y -i %filename%.mp4 -c:v libx264 -preset medium -b:v %bv%k -s %va%x%vb% -pass 1 -c:a aac -b:a %ba%k -f mp4 NUL && ^ffmpeg -i %filename%.mp4 -c:v libx264 -preset medium -b:v %bv%k -s %va%x%vb% -pass 2 -c:a aac -b:a %ba%k out_%filename%.mp4
 choice /t 3 /d y /n >nul
 explorer %~dp0
+
+
+
+##Windows编译n2n
+
+n2n\n2n_v2>mkdir build
+n2n\n2n_v2>cd build
+n2n\n2n_v2\build>cmake ..
+n2n\n2n_v2\build>MSBuild edge.vcxproj /t:Build /p:Configuration=Release
+n2n\n2n_v2\build>MSBuild supernode.vcxproj /t:Build /p:Configuration=Release
