@@ -10,6 +10,17 @@
 
 `supernode -l 4321 -v`
 
+或写入日志
+
+`supernode -l 4321 -v >/root/n2n/sn.log 2>&1 &`
+
+
+_查找和杀掉_
+```
+ps -aux|grep supernode
+pkill supernode
+```
+
 *编译安装n2n*
 
 ```
@@ -133,3 +144,24 @@ edge -d 虚拟网卡名 -a 10.0.0.1 -c testnet -k senrame -l 1.2.3.4:1234
 -v 输出比较详细的log
 -t 指定用于管理的UDP端口
 ```
+
+
+##Windows编译n2n
+微软下载并安装：Visual Studio Installer
+（只要编译工具，2019版本的大概2G左右）
+后来才了解到meyerd的版本比较靠谱
+
+```
+>git clone https://github.com/meyerd/n2n.git
+>ccd n2n
+n2n>cd n2n\n2n_v2
+n2n\n2n_v2>mkdir build
+n2n\n2n_v2>cd build
+n2n\n2n_v2\build>cmake ..
+n2n\n2n_v2\build>MSBuild edge.vcxproj /t:Build /p:Configuration=Release
+n2n\n2n_v2\build>MSBuild supernode.vcxproj /t:Build /p:Configuration=Release
+```
+
+执行windows版本需要安装以下组件：
+openvpn or TAP-Windows download page: https://build.openvpn.net/downloads/releases/
+
