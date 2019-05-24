@@ -12,7 +12,7 @@
 
 或写入日志
 
-`supernode -l 4321 -v >/root/n2n/sn.log 2>&1 &`
+`supernode -l 4321 -v -f > /root/n2n/supernode.log 2>&1 &`
 
 
 _查找和杀掉_
