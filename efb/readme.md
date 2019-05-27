@@ -68,3 +68,46 @@ requests==2.22.0
 urllib3==1.25.2
 python-telegram-bot==10.1.0
 ```
+
+
+修复快速同时发两个或多个文件，TG收到同样的重复文件的问题
+
+[ews#30](https://github.com/blueset/efb-wechat-slave/issues/30)
+
+[Mark1](https://t.me/c/1083959736/53784)
+
+[Mark2](https://t.me/c/1083959736/53818)
+```
+$ sed -n '142,172p' /usr/Py373/lib/python3.7/site-packages/itchat/components/messages.py
+                'Text': download_video, }
+        elif m['MsgType'] == 49: # sharing
+            if m['AppMsgType'] == 6:
+                rawMsg = m
+                cookiesList = {name:data for name,data in core.s.cookies.items()}
+                    url = core.loginInfo['fileUrl'] + '/webwxgetmedia'
+                    params = {
+                        'sender': rawMsg['FromUserName'],
+                        'mediaid': rawMsg['MediaId'],
+                        'filename': rawMsg['FileName'],
+                        'fromuser': core.loginInfo['wxuin'],
+                        'pass_ticket': 'undefined',
+                        'webwx_data_ticket': cookiesList['webwx_data_ticket'],}
+                    headers = { 'User-Agent' : config.USER_AGENT }
+                def download_atta(attaDir=None):
+                    r = core.s.get(url, params=params, stream=True, headers=headers)
+                    tempStorage = io.BytesIO()
+                    for block in r.iter_content(1024):
+                        tempStorage.write(block)
+                    if attaDir is None:
+                        return tempStorage.getvalue()
+                    with open(attaDir, 'wb') as f:
+                        f.write(tempStorage.getvalue())
+                    return ReturnValue({'BaseResponse': {
+                        'ErrMsg': 'Successfully downloaded',
+                        'Ret': 0, }})
+                msg = {
+                    'Type': 'Attachment',
+                    'Text': download_atta, }
+            elif m['AppMsgType'] == 8:
+                download_fn = get_download_fn(core,
+```
