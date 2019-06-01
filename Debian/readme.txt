@@ -136,9 +136,14 @@ cat /root/.ssh/authorized_keys
 #ssh-copy-id -i ~/.ssh/id_rsa.pub "-p 10022 user@server"
 ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.15.241
 
-也可以手动在客户端建立目录和authorized_keys，注意修改权限
+#也可以手动在客户端建立目录和authorized_keys，注意修改权限
 chmod 640 /root/.ssh/authorized_keys
 
+#重启SSH服务前建议多保留一个会话以防不测
 systemctl restart sshd
-重启SSH服务前建议多保留一个会话以防不测
+
+##客户端登录
+#先改key文件的权限再连接
+chmod 600 key
+ssh -i key root@1.1.1.1
 
