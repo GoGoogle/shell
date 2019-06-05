@@ -170,7 +170,8 @@ openvpn or TAP-Windows download page: https://build.openvpn.net/downloads/releas
 
 内网：192.168.1.0/24，edge：10.2.3.6
 ```
-edge -d edge0 -a 10.2.3.6 -c name -k password -l 1.1.1.1:4321 -m fa:16:3e:89:a2:87 -
+edge -d edge0 -a 10.2.3.6 -c name -k password -l 1.1.1.1:4321 -m fa:16:3e:89:a2:87 -r
+（-r很重要）
 echo "1" > /proc/sys/net/ipv4/ip_forward
 iptables -t nat -A POSTROUTING -j MASQUERADE
 ```
