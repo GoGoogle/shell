@@ -165,3 +165,21 @@ n2n\n2n_v2\build>MSBuild supernode.vcxproj /t:Build /p:Configuration=Release
 执行windows版本需要安装以下组件：
 openvpn or TAP-Windows download page: https://build.openvpn.net/downloads/releases/
 
+##n2n访问远端内网示例
+远端环境：
+
+内网：192.168.1.0/24，edge：10.2.3.6
+```
+edge -d edge0 -a 10.2.3.6 -c name -k password -l 1.1.1.1:4321 -m fa:16:3e:89:a2:87 -
+echo "1" > /proc/sys/net/ipv4/ip_forward
+iptables -t nat -A POSTROUTING -j MASQUERADE
+```
+
+本地环境：
+
+内网：任何，只要不是跟远端重复，edge：10.2.3.4
+
+```
+edge -d edge0 -a 10.2.3.4 -c name -k password -l 1.1.1.1:4321 -m fa:16:3e:89:a2:88
+route add 192.168.1.0/24（远端内网） mask 255.255.255.0 10.2.3.6（远端Edge）
+```
