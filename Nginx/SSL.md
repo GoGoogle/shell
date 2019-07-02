@@ -12,3 +12,12 @@ apt install certbot
 certbot renew
 nginx -s reload
 ```
+
+
+反向代理```
+proxy_set_header   X-Real-IP $remote_addr;
+proxy_set_header   X-Forwarded-For $remote_addr;
+proxy_set_header   Host      $host;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_pass         http://127.0.0.1:8081;
+```
