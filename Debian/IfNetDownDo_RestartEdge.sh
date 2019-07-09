@@ -3,10 +3,13 @@
 ##判断目标IP断开时，执行RestartEdge.sh
 ##为文件添加执行权限：chmod a+x IfNetDownDo_RestartEdge.sh
 ##执行格式为：IfNetDownDo_RestartEdge.sh 被检测的IP地址
-## 2019-07-08 18:39:26
+## 2019-07-0 18:39:26
 
 ip=$1
 ##被监测的网络IP
+
+logfile=/root/NetDown.log
+##断开记录
 
 while true
 do
@@ -22,8 +25,8 @@ do
 	##如果发送和接收相差为3，证明3次都没通
                 then
                         bash /root/restartEdge.sh
-						##echo "TSET"
-                        ##目标IP不通时，执行RestartEdge.sh
+			echo $ip Down at `date '+%Y-%m-%d %H:%M:%S'` >>$logfile
+                        ##目标IP不通时，执行RestartEdge.sh，并将断开时间写入日志
         fi
 		break # 退出循环
 done
