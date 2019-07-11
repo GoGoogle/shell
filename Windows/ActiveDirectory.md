@@ -13,6 +13,7 @@ for /f "tokens=1,2,3,4,5,6 delims=," %a in (user.csv) do dsadd user "cn=%b,OU=%f
 
 REM 导出全部登录名
 csvde -f list.csv -d "OU=depts,DC=test,DC=local" -l "SamAccountName"
+dsquery user OU=depts,DC=test,DC=local | dsget user -samid > list.txt
 
 REM 其它，userlist.csv|格式：liji,换行lili,换行lina,
 for /f "tokens=1 delims=," %a in (userlist.csv) do net user %a|find "允许的工作站" >>允许的工作站.txt
