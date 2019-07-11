@@ -11,6 +11,9 @@ dataquery,资料查询,1111,资料,查询,上网机
 REM 批量添加用户
 for /f "tokens=1,2,3,4,5,6 delims=," %a in (user.csv) do dsadd user "cn=%b,OU=%f,OU=Mydepts,DC=test,DC=local" -samid %a -upn %a@test.local -fn %e -ln %d -pwd %c -display %b -dept %f -memberof "cn=%f,OU=Mysafes,DC=test,DC=local" -disabled no
 
+REM 导出全部登录名
+csvde -f list.csv -d "OU=depts,DC=test,DC=local" -l "SamAccountName"
+
 REM 其它，userlist.csv|格式：liji,换行lili,换行lina,
 for /f "tokens=1 delims=," %a in (userlist.csv) do net user %a|find "允许的工作站" >>允许的工作站.txt
 for /f "tokens=1 delims=," %a in (userlist.csv) do net user %a|find "全名" >>全名.txt
