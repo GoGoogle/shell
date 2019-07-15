@@ -67,3 +67,5 @@ update_eav
   
 [10.国家药品监督管理局](http://www.nmpa.gov.cn/WS04/CL2042/)  
 凡是没有通过国家药监局备案的产品都是三无产品
+
+[11.国家食品药品监督管理局--数据查询](http://app1.sfda.gov.cn/datasearch/face3/base.jsp%3FtableId%3D96%26tableName%3DTABLE96%26title%3D%25CD%25F8%25C9%25CF%25D2%25A9%25B5%25EA%26bcId%3D139468294509280829793942689586)
