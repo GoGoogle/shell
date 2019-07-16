@@ -24,7 +24,7 @@ Enter-PSSession 10.0.0.2 -Credential test.local\administrator
 #### 有关历史记录
 
 ##### 本地操作，查看命令历史记录：
-Get-Content (Get-PSReadlineOption).HistorySavePath
+`Get-Content (Get-PSReadlineOption).HistorySavePath`
 
 ##### 本地操作，清除命令历史记录：
 `Remove-Item (Get-PSReadlineOption).HistorySavePath`
