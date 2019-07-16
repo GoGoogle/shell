@@ -68,5 +68,5 @@ Enter-PSSession 10.0.0.2 -Credential test.local\administrator
 ```
 
 
-###### 参考
+###### [参考](https://docs.microsoft.com/en-us/powershell/module/addsadministration/set-aduser?view=win10-ps)
 [001.PDF.渗透技巧——获得Powershell命令的历史记录–3gstudent](./001.PDF.渗透技巧——获得Powershell命令的历史记录–3gstudent.pdf)
