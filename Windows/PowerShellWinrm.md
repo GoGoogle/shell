@@ -50,6 +50,12 @@ Enter-PSSession 10.0.0.2 -Credential test.local\administrator
 
 `doskey /h`
 
+#### 查看启动时间
+
+`wmic path Win32_OperatingSystem get LastBootUpTime`
+
+`systeminfo`
+
 #### 未测试
 - 要清除屏幕显示历史记录（`F7`），您必须按 `ALT + F7`。
 - 此历史记录由控制台缓冲区管理，而不是由其历史可清除的powershell管理 clear-history 小命令
