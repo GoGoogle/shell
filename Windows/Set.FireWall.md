@@ -1,14 +1,14 @@
 ### 防火墙相关命令设置
 
-@REM 导出规则
+- @REM 导出规则
 `netsh advfirewall export "D:\Windows\firewall-bak\wf.pol"`
 
-@REM 导入规则
+- @REM 导入规则
 `netsh advfirewall import "D:\Windows\firewall-bak\wf.pol"`
 
-@REM 恢复初始设置
+- @REM 恢复初始设置
 `netsh advfirewall reset`
 
-@REM 
+- @REM 
 `netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound`
 
