@@ -1,7 +1,7 @@
 #!/bin/bash
 ## 带数据库整站备份
-## 权限chmod a+x backup-web.sh
-# 0 5 * * * /root/efb_bak.sh 每日凌晨5点执行备份
+## 权限chmod a+x Backup-web.sh
+# 0 5 * * * /root/Backup-web.sh 每日凌晨5点执行备份
 
 # 数据库认证
 user="test"
