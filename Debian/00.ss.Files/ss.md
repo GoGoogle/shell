@@ -72,7 +72,7 @@ killall -9 rinetd-bbr for restart.
 `nohup /usr/bin/ss-server -c /root/ss.json --acl /root/ss.acl </dev/null &>>/home/roott/ss-local.log &`
 
 ```
-vim /root/ss443.acl
+vim /root/ss.acl
 [reject_all]
 
 [white_list]
