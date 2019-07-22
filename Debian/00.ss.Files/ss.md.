@@ -55,6 +55,7 @@ killall -9 rinetd-bbr for restart.
 ```
 
 ####  SS配置文件案例
+
 ```
 {
     "server":"0.0.0.0",
@@ -63,4 +64,21 @@ killall -9 rinetd-bbr for restart.
     "timeout":60,
     "method":"aes-256-cfb"
 }
+```
+
+
+#### ss-server白名单模式
+
+`nohup /usr/bin/ss-server -c /root/ss.json --acl /root/ss.acl </dev/null &>>/home/roott/ss-local.log &`
+
+```
+vim /root/ss443.acl
+[reject_all]
+
+[white_list]
+127.0.0.0/8
+::1/128
+
+#北京移动
+233.233.0.0/16
 ```
