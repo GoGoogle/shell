@@ -1,0 +1,24 @@
+## chmod a+x netspeed
+## ./netspeed
+## bash <(wget --no-check-certificate -qO- 'https://github.com/GoGoogle/shell/raw/master/Debian/netspeed')
+
+## wget --no-check-certificate -qO netspeed 'https://github.com/GoGoogle/shell/raw/master/Debian/netspeed' && chmod a+x netspeed && ./netspeed
+
+#!/bin/bash
+
+#if [ "$#" -eq 0 ]; then
+#    echo "Usage: $(basename $0) <NIC>"
+#    exit 1
+#fi
+
+while true; do
+    send_pre=$(ip -s link show $1 | grep 'TX' -A1 | tail -n1 | awk '{print $1}')
+    recv_pre=$(ip -s link show $1 | grep 'RX' -A1 | tail -n1 | awk '{print $1}')
+    sleep 1s
+    send_post=$(ip -s link show $1 | grep 'TX' -A1 | tail -n1 | awk '{print $1}')
+    recv_post=$(ip -s link show $1 | grep 'RX' -A1 | tail -n1 | awk '{print $1}')
+
+    send_speed=$(awk 'BEGIN { printf("%5.2f\n", ARGV[1] / ARGV[2]); }' $[send_post - send_pre] 1048576)
+    recv_speed=$(awk 'BEGIN { printf("%5.2f\n", ARGV[1] / ARGV[2]); }' $[recv_post - recv_pre] 1048576)
+    echo -ne "\r\e[K\e[36mUploadSpeed:\e[0m \e[37;1m$send_speed MB/s\e[0m    \e[36mDownloadSpeed:\e[0m \e[37;1m$recv_speed MB/s\e[0m"
+done
