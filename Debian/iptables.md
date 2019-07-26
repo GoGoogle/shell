@@ -1,9 +1,16 @@
 ## iptables 防火墙 linux
 
 ```iptables -I INPUT -p tcp --dport 443 -j DROP
+#顺序不能错，先拒绝所有连接443端口权限
+
 iptables -I INPUT -s 127.0.0.1 -p tcp --dport 443 -j ACCEPT
+#添加本机访问443端口权限
+
 iptables -I INPUT -m iprange --src-range 192.168.0.2-192.168.0.10 -p tcp --dport 443 -j ACCEPT
+#添加一个IP段访问443端口权限
+
 iptables -I INPUT -s 2.2.0.0/16 -p tcp --dport 443 -j ACCEPT
+#添加一个子网访问443端口权限
 ```
 
 #### 清除规则：
