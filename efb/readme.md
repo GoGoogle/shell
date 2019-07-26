@@ -111,3 +111,11 @@ $ sed -n '142,172p' /usr/Py373/lib/python3.7/site-packages/itchat/components/mes
             elif m['AppMsgType'] == 8:
                 download_fn = get_download_fn(core,
 ```
+
+### 给ptb单独使用socks5代理：
+- `socks5h://` 表示使用 SOCKS5（远程DNS） 代理
+```
+blueset.telegram/config.yaml
+request_kwargs:
+                proxy_url: "socks5h://ip:port"
+```
