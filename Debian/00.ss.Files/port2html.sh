@@ -1,7 +1,7 @@
 #!/bin/bash
 ## 监控端口连接情况
 ## 写入HTML文件
-## 使用: chmod a+x ./port2html.sh 443 /var/www/html
+## 使用: wget --no-check-certificate -qO port2html.sh 'https://github.com/GoGoogle/shell/raw/master/Debian/00.ss.Files/port2html.sh' && chmod a+x port2html.sh
 ## 每3分钟刷新一次
 ## */3 * * * * /root/port2html.sh 443 /var/www/html
 ## by bmwcto 2019.7.26 23:01
