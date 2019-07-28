@@ -53,3 +53,7 @@ choice /t %t% /d y /n >nul
 ffmpeg -y -i %filename%.mp4 -c:v libx264 -preset medium -b:v %bv%k -s %va%x%vb% -pass 1 -c:a aac -b:a %ba%k -f mp4 NUL && ^ffmpeg -i %filename%.mp4 -c:v libx264 -preset medium -b:v %bv%k -s %va%x%vb% -pass 2 -c:a aac -b:a %ba%k out_%filename%.mp4
 choice /t 3 /d y /n >nul
 explorer %~dp0
+
+### 同步，备份，复制；若要双向同步，可以把路径再反过来，两个同时运行即可；
+robocopy D:\work Z:\backup /Z /MIR /MT:10 /MOT:1
+REM 从work备份到backup,Z为断续续传。MIR为镜像目录树,会删除源中不再存在的目标文件/目录。MT为10线程。MOT监视源，1分钟1次。
