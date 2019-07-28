@@ -6,7 +6,40 @@
 ## */3 * * * * /root/port2html.sh 443 /var/www/html
 ## by bmwcto 2019.7.26 23:01
 
+ver=3.5
 port=$1
 htmlfile=$2/$port.html
-Pstatus="<pre>`/bin/netstat -ntu | grep :$port | awk '{print $4,$5}'| sort | uniq -c | sort -n`</pre>"
-echo "$Pstatus <hr />at `date '+%Y-%m-%d %H:%M:%S'`" >$htmlfile;
+txtfile=$2/$port.txt
+xtime=`date '+%Y-%m-%d %H:%M:%S'`
+
+#### 获取本机内网IP的两种方式
+#- `ip a|grep -w 'inet'|grep 'global'|sed 's/.*inet.//g'|sed 's/\/[0-9][0-9].*$//g'`
+#- `ip -4 addr|sed -n -e '/brd/p'|sed -n -e 's/\/.*$//p'|awk '{print $2}'`
+
+## 获取本机内网IP后提取第1行的结果的两种方式,适用于有多个内网IP,按需修改
+#myip=`ip -4 addr|sed -n -e '/brd/p'|sed -n -e 's/\/.*$//p'|awk '{print $2}'|awk 'NR==1{print}'`
+myip=`ip -4 addr|sed -n -e '/brd/p'|sed -n -e 's/\/.*$//p'|awk '{print $2}'|head -n1`
+
+## v1.0
+#Pstatus="<pre>`/bin/netstat -ntu | grep :$port | awk '{print $4,$5}'| sort | uniq -c | sort -n`</pre>"
+
+## v2.0
+## 过虑出访问指定端口的IP
+#Pstatus="<pre>`/bin/netstat -anlp|grep tcp|grep -w $myip:$port|awk '{print $5}'|awk -F: '{print $1}'|sort|uniq -c|awk '{print $2}'|sort -nr`</pre>"
+#echo "$Pstatus <hr />version:$ver | at `date '+%Y-%m-%d %H:%M:%S'`" >$htmlfile;
+
+## v3.0
+## 过虑出访问指定端口的IP
+Pstatus1=`/bin/netstat -anlp|grep tcp|grep -w $myip:$port|awk '{print $5}'|awk -F: '{print $1}'|sort|uniq -c|awk '{print $2}'|sort -nr`
+
+## 带日期和时间以及换行，整体记录到txtfile
+echo -e "\n$xtime\n${Pstatus1}">>$txtfile;
+
+## 延时1秒，以防未记录完成
+sleep 1s
+
+## 从txtfile内过滤掉相同的IP，grep -o -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}",只找IP，忽略日期
+Pstatus2="<pre>`cat $txtfile|grep -o -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"|sort|uniq -c|awk '{print $2}'|sort -nr`</pre>"
+
+## 最后过滤后的结果写入到htmlfile
+echo "$Pstatus2 <hr />version:$ver | at $xtime" >$htmlfile;
