@@ -6,7 +6,7 @@
 ## */3 * * * * /root/port2html.sh 443 /var/www/html
 ## by bmwcto 2019.7.26 23:01
 
-ver=3.6
+ver=3.7
 port=$1
 htmlfile=$2/$port.html
 txtfile=$2/$port.txt
@@ -67,3 +67,6 @@ Pstatus2="<pre>`cat $txtfile|grep -o -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-
 
 ## 最后过滤后的结果写入到htmlfile
 echo "$Pstatus2 <hr />version:$ver | at $xtime" >$htmlfile;
+
+## 当前直接输出显示结果
+cat $htmlfile;
