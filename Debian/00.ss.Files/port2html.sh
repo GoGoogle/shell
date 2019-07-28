@@ -13,28 +13,28 @@ txtfile=$2/$port.txt
 xtime=`date '+%Y-%m-%d %H:%M:%S'`
 
 ## 使用说明
-  4 usage () {
-  3         name=`basename $0`
-  2         echo "$name 版本：$ver by <bmwcto>"
-  1         echo
-20          echo "用处：记录本机第1个内网网卡的特定端口被访问的IP地址，并存入指定路径，最后过滤提取所有IP到指定文件，方便查阅。"
-  1         echo
-  2         echo "使用说明如下："
-  3         echo
-  4         echo "./$name 端口 文件存放路径"
-  5         echo
-  6         echo "例如："
-  7         echo "./$name 443 /var/www/html"
-  8         echo
-  9 }
- 10
- 11 ## 未加任何参数时输出使用帮助
- 12 shift `expr $OPTIND - 1`
- 13
- 14 if [ "x$1" = "x" ]; then
- 15         usage
- 16         exit
- 17 fi
+usage () {
+        name=`basename $0`
+        echo "$name 版本：$ver by <bmwcto>"
+        echo
+        echo "用处：记录本机第1个内网网卡的特定端口被访问的IP地址，并存入指定路径，最后过滤提取所有IP到指定文件，方便查阅。"
+        echo
+        echo "使用说明如下："
+        echo
+        echo "./$name 端口 文件存放路径"
+        echo
+        echo "例如："
+        echo "./$name 443 /var/www/html"
+        echo
+}
+
+## 未加任何参数时输出使用帮助
+shift `expr $OPTIND - 1`
+
+if [ "x$1" = "x" ]; then
+        usage
+        exit
+fi
  
 #### 获取本机内网IP的两种方式
 #- `ip a|grep -w 'inet'|grep 'global'|sed 's/.*inet.//g'|sed 's/\/[0-9][0-9].*$//g'`
