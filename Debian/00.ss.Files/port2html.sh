@@ -7,7 +7,7 @@
 ## by bmwcto 8:42 2019/7/29
 
 lc="by <bmwcto> 19:33 2019/7/28"
-ver=3.9
+ver=3.9.1
 port=$1
 htmlfile=$2/$port.html
 txtfile=$2/$port.txt
@@ -58,12 +58,12 @@ myip=`ip -4 addr|sed -n -e '/brd/p'|sed -n -e 's/\/.*$//p'|awk '{print $2}'|head
 Pstatus1=`/bin/netstat -anlp|grep tcp|grep -w $myip:$port|awk '{print $5}'|awk -F: '{print $1}'|sort|uniq -c|awk '{print $2}'|sort -nr`
 
 ## 若端口连接信息为空时不写记录，不为空时再写记录，以减小记录文件的体积大小
-if [ ! -n $Pstatus1 ]
+if [[ "$Pstatus1" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3} ]];
 then
-	exit
-else
 	## 带日期和时间以及换行，整体记录到txtfile
 	echo -e "\n$xtime\n${Pstatus1}">>$txtfile;
+else
+	exit
 fi
 
 ## 延时1秒，以防未记录完成
