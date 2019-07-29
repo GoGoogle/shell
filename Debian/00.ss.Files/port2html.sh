@@ -4,9 +4,10 @@
 ## 使用: wget --no-check-certificate -qO port2html.sh 'https://github.com/GoGoogle/shell/raw/master/Debian/00.ss.Files/port2html.sh' && chmod a+x port2html.sh
 ## 每3分钟刷新一次
 ## */3 * * * * /root/port2html.sh 443 /var/www/html
-## by bmwcto 2019.7.26 23:01
+## by bmwcto 8:42 2019/7/29
 
-ver=3.7
+lc="by <bmwcto> 19:33 2019/7/28"
+ver=3.8
 port=$1
 htmlfile=$2/$port.html
 txtfile=$2/$port.txt
@@ -15,7 +16,7 @@ xtime=`date '+%Y-%m-%d %H:%M:%S'`
 ## 使用说明
 usage () {
         name=`basename $0`
-        echo "$name 版本：$ver by <bmwcto>"
+        echo "$name 版本：$ver $lc"
         echo
         echo "用处：记录本机第1个内网网卡的特定端口被访问的IP地址，并存入指定路径，最后过滤提取所有IP到指定文件，方便查阅。"
         echo
@@ -56,8 +57,14 @@ myip=`ip -4 addr|sed -n -e '/brd/p'|sed -n -e 's/\/.*$//p'|awk '{print $2}'|head
 ## 过虑出访问指定端口的IP
 Pstatus1=`/bin/netstat -anlp|grep tcp|grep -w $myip:$port|awk '{print $5}'|awk -F: '{print $1}'|sort|uniq -c|awk '{print $2}'|sort -nr`
 
-## 带日期和时间以及换行，整体记录到txtfile
-echo -e "\n$xtime\n${Pstatus1}">>$txtfile;
+## 若端口连接信息为空时不写记录，不为空时再写记录，以减小记录文件的体积大小
+if [ $Pstatus1 -eq "" ]
+then
+	exit
+else
+	## 带日期和时间以及换行，整体记录到txtfile
+	echo -e "\n$xtime\n${Pstatus1}">>$txtfile;
+fi
 
 ## 延时1秒，以防未记录完成
 sleep 1s
