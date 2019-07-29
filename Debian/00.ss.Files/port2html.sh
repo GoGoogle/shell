@@ -7,7 +7,7 @@
 ## by bmwcto 8:42 2019/7/29
 
 lc="by <bmwcto> 19:33 2019/7/28"
-ver=3.8
+ver=3.9
 port=$1
 htmlfile=$2/$port.html
 txtfile=$2/$port.txt
@@ -58,7 +58,7 @@ myip=`ip -4 addr|sed -n -e '/brd/p'|sed -n -e 's/\/.*$//p'|awk '{print $2}'|head
 Pstatus1=`/bin/netstat -anlp|grep tcp|grep -w $myip:$port|awk '{print $5}'|awk -F: '{print $1}'|sort|uniq -c|awk '{print $2}'|sort -nr`
 
 ## 若端口连接信息为空时不写记录，不为空时再写记录，以减小记录文件的体积大小
-if [ $Pstatus1 -eq "" ]
+if [ ! -n $Pstatus1 ]
 then
 	exit
 else
