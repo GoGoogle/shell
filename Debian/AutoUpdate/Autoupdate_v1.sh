@@ -2,8 +2,8 @@
 ## 此版本思路已经过时，存档；
 ## BMWCTO 10:33 2019/7/31
 
-##假设当前版本为1.2
-ver=1.2
+##假设当前版本为1.3
+ver=1.3
 
 ## 自动更新函数
 _update() {
@@ -13,8 +13,8 @@ _update() {
                 # echo "当前：$now"
                 # echo "多5分钟：`date '+%w%H%M' -d 5min`"
 
-                #设置时间范围为每周2的10点35分-55分之间
-                e=31035
+                #设置时间范围为每周3的11点00分到55分之间
+                e=31100
                 f=31155
                 #echo -e "\n\n $e=<$now=<$f \n\n"
 
@@ -34,7 +34,7 @@ _update() {
                 ### 保存远程文件到本地
                 getnew="wget --no-check-certificate -qO $sh_path $url && chmod a+x $sh_path"
 
-#判断当前时间为周2的10点35分到55分之间
+#判断当前时间为周3的11点00分到55分之间
 if [ "$e" -le "$now" ] && [ "$now" -le  "$f" ]
 then
         echo -e "\n\n现在正在设置范围内\n\n";
@@ -42,7 +42,7 @@ then
         then
                 ## 先备份当前脚本
                 echo -e "但版本不同，需要更新\n 正在备份...";
-                cp $sh_path $sh_path.bak
+                cp $sh_path $sh_path-$now.bak
 		
                 ## 拉取更新
 		echo -e "备份完成\n 正在拉取更新...";
