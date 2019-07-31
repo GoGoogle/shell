@@ -2,37 +2,37 @@
 ## 此版本思路已经过时，存档；
 ## BMWCTO 10:33 2019/7/31
 
-##假设当前版本为1.3
-ver=1.3
+##假设当前版本为1.4
+ver=1.4
 
 ## 自动更新函数
 _update() {
-                #获取当前具体日期和时分并格式化成纯数字
-                now=`date '+%w%H%M'`
-                # echo "少5分钟：`date '+%w%H%M' -d -5min`"
-                # echo "当前：$now"
-                # echo "多5分钟：`date '+%w%H%M' -d 5min`"
+	#获取当前具体日期和时分并格式化成纯数字
+	now=`date '+%w%H%M'`
+	# echo "少5分钟：`date '+%w%H%M' -d -5min`"
+	# echo "当前：$now"
+	# echo "多5分钟：`date '+%w%H%M' -d 5min`"
 
-                #设置时间范围为每周3的11点00分到55分之间
-                e=31100
-                f=31155
-                #echo -e "\n\n $e=<$now=<$f \n\n"
+	#设置时间范围为每周3的11点00分到55分之间
+	e=31100
+	f=31155
+	#echo -e "\n\n $e=<$now=<$f \n\n"
 
-                #当前脚本绝对路径和脚本本身名称
-                sh_path=`readlink -f "$0"`
+	#当前脚本绝对路径和脚本本身名称
+	sh_path=`readlink -f "$0"`
 
-                #当前脚本绝对路径
-                work_path=$(dirname $(readlink -f $0))
-                # echo "$sh_path"
-                # echo "$work_path/"
+	#当前脚本绝对路径
+	work_path=$(dirname $(readlink -f $0))
+	# echo "$sh_path"
+	# echo "$work_path/"
 
-                ## 远程脚本路径
-                url=https://github.com/GoGoogle/shell/raw/master/Debian/AutoUpdate/Autoupdate_v1.sh
+	## 远程脚本路径
+	url=https://github.com/GoGoogle/shell/raw/master/Debian/AutoUpdate/Autoupdate_v1.sh
 
-                ### 从远程URL里面拉取全部内容，并从内容内查找"ver="所在行，提取第1行结果，并去掉"ver="，只保留后面的所有版本字符，保留使用；
-                getver=`curl -fsSL "$url"|grep ver=|head -n1|sed s/ver=/""/`
-                ### 保存远程文件到本地
-                getnew="wget --no-check-certificate -qO $sh_path $url && chmod a+x $sh_path"
+	### 从远程URL里面拉取全部内容，并从内容内查找"ver="所在行，提取第1行结果，并去掉"ver="，只保留后面的所有版本字符，保留使用；
+	getver=`curl -fsSL "$url"|grep ver=|head -n1|sed s/ver=/""/`
+	### 保存远程文件到本地
+	getnew="wget --no-check-certificate -qO $sh_path $url && chmod a+x $sh_path"
 
 #判断当前时间为周3的11点00分到55分之间
 if [ "$e" -le "$now" ] && [ "$now" -le  "$f" ]
