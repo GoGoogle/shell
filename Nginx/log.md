@@ -12,3 +12,4 @@
 - 查询访问最频繁的IP	`awk '{print $1}' /var/log/nginx/access.log|sort | uniq -c |sort -n -k 1 -r|more`
 - 查询访问最频繁的URL	`awk '{print $7}' /var/log/nginx/access.log|sort | uniq -c |sort -n -k 1 -r|more`
 - 根据时间段统计查看	`cat /var/log/nginx/access.log| sed -n '/14\/Mar\/2018:15/,/20\/Aug\/2018:16/p'|more`
+- 统计当天访问URL统计PV	`cat /var/log/nginx/access.log| grep `LANG=C date +%d/%b/%Y`|awk '{print $7}'|wc -l`
