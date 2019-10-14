@@ -3,7 +3,7 @@
 ## 把文件版本单独写入到.ver文件，减少检测负荷；
 ## 本应该把每个文件的版本号都写入到.ver文件中，然后根据需求检测更新，目前暂时还没有这个必要，所以先做单文件的。
 
-## BMWCTO 18:40 2019/10/14
+## BMWCTO 19:52 2019/10/14
 
 
 ## 自动更新函数
@@ -50,7 +50,7 @@ _update() {
         getnewShell="wget --no-check-certificate -qO $sh_path $ShellUrl && chmod a+x $sh_path"
         getnewVer="wget --no-check-certificate -qO $work_path/$filename.ver $VerUrl"
 
-#判断当前时间为周3的11点00分到55分之间
+#判断当前时间为每周1的19点00分到22点00分之间
 if [ "$e" -le "$now" ] && [ "$now" -le  "$f" ]
 then
         echo -e "\n\n现在正在设置范围内\n\n";
