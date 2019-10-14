@@ -38,7 +38,8 @@ _update() {
         # echo "$work_path/"
 
         ## 读取本地文件版本
-        ver=`head -n1|$work_path/$filename.ver`
+        #ver=`cat "$work_path/$filename.ver"|grep ver=|head -n1|sed s/ver=/""/`
+        ver=`cat "$work_path/$filename.ver"|head -n1`
 
         ## 远程脚本及版本文件路径
         ShellUrl=https://github.com/GoGoogle/shell/raw/master/Debian/AutoUpdate/Autoupdate_v2.sh
