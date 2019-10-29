@@ -33,4 +33,4 @@ DomIpList="`cat $txtfile|grep -o -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1
 sed -i '{/'$3'/,$d;}' $aclfile
 
 ## 最后过滤后的结果写入到aclfile
-echo -e "$DomIpList\n#$xtime" >>$aclfile;
+echo -e "#$3\n$DomIpList\n#$xtime" >>$aclfile;
