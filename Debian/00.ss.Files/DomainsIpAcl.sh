@@ -4,6 +4,7 @@
 ## 每周六5点30分刷新一次
 ## 30 5 * * 6 /root/DomainsIpAcl.sh /root testacl google.com
 ## 依赖于nslookup; apt install dnsutils;
+## by bmwcto 17:34 2019/10/29
 
 txtfile=$1/$2.txt
 aclfile=$1/$2.acl
@@ -27,8 +28,10 @@ fi
 ## 从txtfile内过滤掉相同的IP，grep -o -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}",只找IP，忽略日期
 ipacl="`cat $txtfile|grep -o -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"|sort|uniq -c|awk '{print $2}'|sort -nr`"
 
-## 保留列表
-cp /root/acl443.acl $aclfile
+## 保留列表，删除$3及之后的所有行
+#cp /root/acl443.acl $aclfile
+sed -i '{/'$3'/,$d;}' $aclfile
 
 ## 最后过滤后的结果写入到aclfile
 echo -e "$ipacl\n#$xtime" >>$aclfile;
+
