@@ -27,5 +27,8 @@ fi
 ## 从txtfile内过滤掉相同的IP，grep -o -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}",只找IP，忽略日期
 ipacl="`cat $txtfile|grep -o -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"|sort|uniq -c|awk '{print $2}'|sort -nr`"
 
-## 最后过滤后的结果写入到htmlfile
-echo -e "$ipacl\n#$xtime" >$aclfile;
+## 保留列表
+cp /root/acl443.acl $aclfile
+
+## 最后过滤后的结果写入到aclfile
+echo -e "$ipacl\n#$xtime" >>$aclfile;
