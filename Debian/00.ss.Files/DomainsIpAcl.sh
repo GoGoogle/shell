@@ -3,6 +3,7 @@
 ## 同步到ACL列表
 ## 每周六5点30分刷新一次
 ## 30 5 * * 6 /root/DomainsIpAcl.sh /root testacl google.com
+## 依赖于nslookup; apt install dnsutils;
 
 txtfile=$1/$2.txt
 aclfile=$1/$2.acl
