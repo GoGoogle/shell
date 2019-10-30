@@ -2,7 +2,7 @@
 ## 定时查询域名IP
 ## 同步到ACL列表
 ## 每周六5点30分刷新一次
-## 30 5 * * 6 /root/DomainsDomIpList.sh /root testacl google.com
+## 30 5 * * 6 /root/DomainsIpListAcl.sh /root testacl google.com
 ## 依赖于nslookup; apt install dnsutils;
 ## by bmwcto 17:34 2019/10/29
 
