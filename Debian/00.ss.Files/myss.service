@@ -1,0 +1,21 @@
+## $ cat /lib/systemd/system/myss.service
+## https://github.com/shadowsocks/shadowsocks-libev/issues/2524
+## 重写一个服务来解决这个问题
+## 原因还是没找到，可能是权限问题？
+
+[Unit]
+Description=Shadowsocks-libev Myss
+Documentation=man:shadowsocks-libev(8)
+After=network.target
+
+[Service]
+Type=simple
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+User=root
+Group=root
+LimitNOFILE=32769
+ExecStart=/usr/bin/ss-server -c /root/ss/config.json
+
+[Install]
+WantedBy=multi-user.target
