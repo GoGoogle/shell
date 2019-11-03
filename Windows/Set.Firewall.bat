@@ -60,6 +60,8 @@ goto loop2
 :editme
 choice /t 1 /d y /n >nul
 notepad.exe "%~f0"
+rem 给本身最后一行写入修改时间的批注
+echo rem %~t0>>"%~f0"
 pause
 goto loop
 
@@ -117,8 +119,6 @@ echo %RULE_REMOTEIP%
 goto setRule
 :setRule
 netsh advfirewall firewall set rule name=%RULE_NAME% new remoteip=%RULE_REMOTEIP%
-rem 给本身最后一行写入修改时间的批注
-echo rem %~t0>>"%~f0"
 goto showset
 :showset
 @echo.
