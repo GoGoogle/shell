@@ -2,27 +2,44 @@
 
 @REM 根据操作系统版本判断需要安装的补丁 2016年12月5日
 
-ver | find "5.1." > NUL && goto win_xp
+ver | find "5.1." > NUL && goto winxp
 ver | find "5.2." > NUL && goto win2003
 ver | find "6.1." > NUL && goto win7
 ver | find "6.3." > NUL && goto win2012
+ver | find "10." > NUL && goto win10
 
-:win_xp
+:winxp
+
+rem 格式为时间为变量FmTime
 for /f "tokens=1, 2, 3 delims=-/. " %%j in ('Date /T') do set FmTime=_%%j-%%k-%%l
 for /f "tokens=1, 2 delims=: " %%j in ('TIME /T') do set FmTime=%FmTime%_%%j_%%k
 
+rem 映射远程路径为本地磁盘
 @pushd \\10.0.0.1\SetupKB$
+
+rem 记录本机信息，时间及当前用户名
 @echo ===================KB4.0 >>onlineUser.txt
 @echo %FmTime%-%UserName% >>onlineUser.txt
+
 rem kb4500331，先复制到本地，再进行安装（方式之一）
 if not exist %SystemDrive%\00.KB md %SystemDrive%\00.KB
 if not exist %SystemDrive%\00.KB\windowsxp-kb4500331-x86.exe copy windowsxp-kb4500331-x86.exe %SystemDrive%\00.KB\
+
+rem 配置自动更新服务并启动（XP和WIN7不一样）
 sc config wuauserv start= demand
 net start wuauserv
+
+rem 静默执行更新补丁并不立即重启
 %SystemDrive%\00.KB\windowsxp-kb4500331-x86.exe /quiet /norestart
+
+rem 查找已安装并KB4开头的补丁，记录下来
 wmic qfe get hotfixid|find "KB4" >>onlineUser.txt
 @echo ===================KB4.1 >>onlineUser.txt
+
+rem 清除临时网络路径
 @popd
+
+rem 退出
 goto end
 
 :win7
