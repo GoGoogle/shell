@@ -6,6 +6,8 @@
 # 日期：2019-11-12
 # 时间：15:11:59  
 # 用法 ./Stock.sh sh000001
+#1-30/29 9-11/1 * * 1-5 /root/stock.sh sh000001
+#01,31,55 13-14/1 * * 1-5 /root/stock.sh sh000001
 
 api_key=TG_BOT_KEY
 chat_id=CHAT_ID
