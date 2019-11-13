@@ -1,0 +1,21 @@
+#$ cat /etc/systemd/system/ehforwarderbot.service
+#systemctl enable ehforwarderbot.service
+
+[Unit]
+Description=EH Forwarder Bot instance
+After=network.target
+Wants=network.target
+Documentation=https://github.com/blueset/ehForwarderBot
+
+[Service]
+Type=simple
+Environment='EFB_PROFILE=bmw' 'LANG=en_US.UTF-8' 'PYTHONIOENCODING=utf_8' 'EFB_DATA_PATH=/root/.ehforwarderbot'
+ExecStart=/usr/local/bin/ehforwarderbot --verbose --profile=${EFB_PROFILE}
+Restart=on-abort
+KillSignal=SIGINT
+StandardOutput=journal
+StardardError=journal
+
+[Install]
+WantedBy=multi-user.target
+Alias=efb.service
