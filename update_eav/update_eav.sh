@@ -2,9 +2,7 @@
 #从老毛子那里获取ESET病毒库的更新包
 #by 2018-4-13
 #老子这么懒，当然要做成自动任务了，周一、四、六更新即可crontab -e
-#01 00 * * 1 /bin/bash /home/bmwcto/soft/list/update_eav.sh
-#04 00 * * 4 /bin/bash /home/bmwcto/soft/list/update_eav.sh
-#06 00 * * 6 /bin/bash /home/bmwcto/soft/list/update_eav.sh
+#01 00 * * 1,4,6 /bin/bash /home/bmwcto/soft/list/update_eav.sh
 #如果能连上 8.8.8.8 的 53 端口，则结果为真，输出 OK，如果连接不上，也就是最开始的语句结果为假，echo "OK" 就被“短路”了，最后输出了 FAIL。
 #nc -z 8.8.8.8 53 && echo "OK" || echo "FAIL"
 
