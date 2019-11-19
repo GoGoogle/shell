@@ -19,3 +19,7 @@ StardardError=journal
 [Install]
 WantedBy=multi-user.target
 Alias=efb.service
+
+### 登录二维码
+### apt install qrencode
+### journalctl -u ehforwarderbot | grep https://login.weixin.qq.com | awk '{print $6}'|tail -1 |sed 's/qrcode/l/g' | qrencode -o - -t UTF8
