@@ -76,6 +76,37 @@ Can't init device hci0: Connection timed out (110)
     * 老子 `reboot` 后以为修好了（因为坚持的时间很长），所以开始写这个笔记，结果笔记还没写完它又熄火了。现在有点慌了……
 3. ### 竟然没睡，继续[摸](https://github.com/RPi-Distro/pi-bluetooth)
     * 可惜了，我这是Kali，没有 `pi-bluetooth` 所以？
+4. ### 睡得着？就这么睡？
+    * 依葫芦画瓢，把 `pi-bluetooth` 的 `/usr/bin/btuart` [搬](https://github.com/RPi-Distro/pi-bluetooth/raw/master/usr/bin/btuart)过来了，还是不行。
+    ```shell
+        #!/bin/sh
+
+        HCIATTACH=/usr/bin/hciattach
+        if grep -q "Pi 4" /proc/device-tree/model; then
+          BDADDR=
+        else
+          SERIAL=`cat /proc/device-tree/serial-number | cut -c9-`
+          B1=`echo $SERIAL | cut -c3-4`
+          B2=`echo $SERIAL | cut -c5-6`
+          B3=`echo $SERIAL | cut -c7-8`
+          BDADDR=`printf b8:27:eb:%02x:%02x:%02x $((0x$B1 ^ 0xaa)) $((0x$B2 ^ 0xaa)) $((0x$B3 ^ 0xaa))`
+        fi
+
+        uart0="`cat /proc/device-tree/aliases/uart0`"
+        serial1="`cat /proc/device-tree/aliases/serial1`"
+
+        if [ "$uart0" = "$serial1" ] ; then
+                uart0_pins="`wc -c /proc/device-tree/soc/gpio@7e200000/uart0_pins/brcm\,pins | cut -f 1 -d ' '`"
+                if [ "$uart0_pins" = "16" ] ; then
+                        $HCIATTACH /dev/serial1 bcm43xx 3000000 flow - $BDADDR
+                else
+                        $HCIATTACH /dev/serial1 bcm43xx 921600 noflow - $BDADDR
+                fi
+        else
+                $HCIATTACH /dev/serial1 bcm43xx 460800 noflow - $BDADDR
+        fi
+     ```
+    
 ## 后记
   > 对，老子根本就没修好，那为什么会有这么个后记？
   * 把屏幕竖起来代码如下：
