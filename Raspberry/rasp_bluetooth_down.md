@@ -125,5 +125,40 @@ Can't init device hci0: Connection timed out (110)
     2. 蓝牙电源自动关闭
   * 备份的时候别学我那个破习惯(名字也不改改，就扔在当前目录下)
   * 时候不早了，要休息了，明天继续填，这些先记下来
+  * ### A2DP出错解决方案：
+* 如果安装了模块，但是 `pactl load-module module-bluetooth-discover`加载不了模块的话，需要手动修改一下配置。
 
+1. 编辑 /etc/pulse/default.pa 文件。
+    `vim /etc/pulse/default.pa`
+	
+2. 找到 `load-module module-bluetooth-discover` 并在前面加#将它注释掉：
 
+    `#load-module module-bluetooth-discover`
+	
+3. 编辑 /usr/bin/start-pulseaudio-x11 文件
+
+    `vim /usr/bin/start-pulseaudio-x11`
+	
+    * 找到下面的代码，并在它下面另其一行
+	
+	```
+	if [ x”$SESSION_MANAGER” != x ] ; then
+		 /usr/bin/pactl load-module module-x11-xsmp “display=$DISPLAY session_manager=$SESSION_MANAGER” > /dev/null
+	fi
+	```
+	
+	* 在它下面写入(两个fi中间) `/usr/bin/pactl load-module module-bluetooth-discover` ，完整如下：
+	
+	```
+	if [ x”$SESSION_MANAGER” != x ] ; then
+		 /usr/bin/pactl load-module module-x11-xsmp “display=$DISPLAY session_manager=$SESSION_MANAGER” > /dev/null
+	fi
+		 /usr/bin/pactl load-module module-bluetooth-discover
+	fi
+	```
+	* 重启服务：
+	
+	```
+	service bluetooth restart
+	sudo pkill pulseaudio
+	```
