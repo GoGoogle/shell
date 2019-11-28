@@ -74,7 +74,7 @@ Can't init device hci0: Connection timed out (110)
     fi
     ```
     * 老子 `reboot` 后以为修好了（因为坚持的时间很长），所以开始写这个笔记，结果笔记还没写完它又熄火了。现在有点慌了……
-3. 竟然没睡，继续[摸](https://github.com/RPi-Distro/pi-bluetooth)
+3. ### 竟然没睡，继续[摸](https://github.com/RPi-Distro/pi-bluetooth)
     * 可惜了，我这是Kali，没有 `pi-bluetooth` 所以？
 ## 后记
   > 对，老子根本就没修好，那为什么会有这么个后记？
