@@ -34,7 +34,7 @@ Can't init device hci0: Connection timed out (110)
 * ~~哇艹……怎么办~~
 
 ## 开始填坑
-1. ### 由于是Kali，我就顺着Kali的方向找到了下面这句：
+1. ### 由于是Kali，我就顺着[Kali的方向](https://forums.kali.org/showthread.php?44451-Bluetooth-problem-with-Pi-Zero-W-Mac-address-AA-AA-AA-AA-AA-AA)找到了下面这句：
    * 先备份，再替换
    ```shell
    cp /lib/firmware/brcm/BCM43430A1.hcd ./
