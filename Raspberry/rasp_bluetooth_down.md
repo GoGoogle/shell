@@ -133,35 +133,35 @@ wget https://github.com/RPi-Distro/bluez-firmware/blob/master/broadcom/BCM43430A
     
 #### 应该是驱动有问题
 * 自从发现这个btuart的东西很重要后，啥也不连接，直接restart这个服务试试
-```shell
-$ systemctl restart hciuart
-Job for hciuart.service failed because the control process exited with error code.
-See "systemctl status hciuart.service" and "journalctl -xe" for details.
-$ tail /var/log/syslog -n10
-Nov 30 00:27:48 BMWCTO systemd[1]: Starting Configure Bluetooth Modems connected by UART...
-Nov 30 00:27:58 BMWCTO btuart[2534]: Initialization timed out.
-Nov 30 00:27:58 BMWCTO btuart[2534]: bcm43xx_init
-Nov 30 00:27:58 BMWCTO systemd[1]: hciuart.service: Control process exited, code=exited, status=1/FAILURE
-Nov 30 00:27:58 BMWCTO systemd[1]: hciuart.service: Failed with result 'exit-code'.
-Nov 30 00:27:58 BMWCTO systemd[1]: Failed to start Configure Bluetooth Modems connected by UART.
-Nov 30 00:27:58 BMWCTO systemd[1]: hciuart.service: Service RestartSec=100ms expired, scheduling restart.
-Nov 30 00:27:58 BMWCTO systemd[1]: hciuart.service: Scheduled restart job, restart counter is at 4.
-Nov 30 00:27:58 BMWCTO systemd[1]: Stopped Configure Bluetooth Modems connected by UART.
-Nov 30 00:27:58 BMWCTO systemd[1]: Starting Configure Bluetooth Modems connected by UART...
-```
+    ```shell
+	$ systemctl restart hciuart
+	Job for hciuart.service failed because the control process exited with error code.
+	See "systemctl status hciuart.service" and "journalctl -xe" for details.
+	$ tail /var/log/syslog -n10
+	Nov 30 00:27:48 BMWCTO systemd[1]: Starting Configure Bluetooth Modems connected by UART...
+	Nov 30 00:27:58 BMWCTO btuart[2534]: Initialization timed out.
+	Nov 30 00:27:58 BMWCTO btuart[2534]: bcm43xx_init
+	Nov 30 00:27:58 BMWCTO systemd[1]: hciuart.service: Control process exited, code=exited, status=1/FAILURE
+	Nov 30 00:27:58 BMWCTO systemd[1]: hciuart.service: Failed with result 'exit-code'.
+	Nov 30 00:27:58 BMWCTO systemd[1]: Failed to start Configure Bluetooth Modems connected by UART.
+	Nov 30 00:27:58 BMWCTO systemd[1]: hciuart.service: Service RestartSec=100ms expired, scheduling restart.
+	Nov 30 00:27:58 BMWCTO systemd[1]: hciuart.service: Scheduled restart job, restart counter is at 4.
+	Nov 30 00:27:58 BMWCTO systemd[1]: Stopped Configure Bluetooth Modems connected by UART.
+	Nov 30 00:27:58 BMWCTO systemd[1]: Starting Configure Bluetooth Modems connected by UART...
+    ```
 > 结果发现了什么？没错，它就是无法重启，又是timed out。
 * 然后我单独测试了脚本里面的这句（转化所有变量后）
-```shell
-$ /usr/bin/hciattach /dev/serial1 bcm43xx 3000000 flow - b8:27:eb:7a:53:01
-bcm43xx_init
-Initialization timed out.
-$ /usr/bin/hciattach /dev/serial1 bcm43xx 912600 noflow - b8:27:eb:7a:53:01
-bcm43xx_init
-Initialization timed out.
-$ /usr/bin/hciattach /dev/serial1 bcm43xx 460800 noflow - b8:27:eb:7a:53:01
-bcm43xx_init
-Initialization timed out.
-```
+    ```shell
+	$ /usr/bin/hciattach /dev/serial1 bcm43xx 3000000 flow - b8:27:eb:7a:53:01
+	bcm43xx_init
+	Initialization timed out.
+	$ /usr/bin/hciattach /dev/serial1 bcm43xx 912600 noflow - b8:27:eb:7a:53:01
+	bcm43xx_init
+	Initialization timed out.
+	$ /usr/bin/hciattach /dev/serial1 bcm43xx 460800 noflow - b8:27:eb:7a:53:01
+	bcm43xx_init
+	Initialization timed out.
+    ```
 >无一例外，全都timed out了，这下应该有结论了，是蓝牙驱动（固件）有毛病。
 >
 >对，就是刚开始找的那些个 `BCM43430A1.hcd` 文件就是驱动，我 `cat` 看了一下，里面不是代码。
