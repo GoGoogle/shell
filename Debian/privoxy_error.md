@@ -111,3 +111,12 @@ Processing 3 added doc-base files...
     now_proxy:
 
     ```
+### 把socks5转成http(s)
+
+* 编辑配置文件 `vim /etc/privoxy/config` ，添加以下行:
+
+    `forward-socks5t   /               127.0.0.1:1080 .`
+
+* 保存退出，然后重启 `privoxy` 即可。
+
+    `systemctl restart privoxy`
