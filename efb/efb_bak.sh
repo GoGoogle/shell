@@ -13,4 +13,4 @@ sleep 10s
 /bin/tar -zcvpf $backup_path_d/$bak_name-$date.tar $backup_path_s
 
 # 删除20天之前的旧备份文件
-find $backup_path_d/* -mtime +20 -exec rm {} \;
+find $backup_path_d/$bak_name-*.tar -mtime +20 -exec rm {} \;
