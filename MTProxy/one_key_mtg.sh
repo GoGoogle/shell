@@ -10,5 +10,4 @@ fi
 
 wget -O mtg https://github.com/9seconds/mtg/releases/download/v1.0.1/mtg-linux-amd64 &&  chmod +x ./mtg
 ./mtg run -b0.0.0.0:$1 $(./mtg generate-secret secured) >/dev/null &
-echo ${pass}
-
+echo $(ps aux --sort=start_time | grep mtg | awk 'NR==1{print $NF}')
