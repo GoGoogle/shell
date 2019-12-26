@@ -82,3 +82,21 @@ vim /root/ss.acl
 #北京移动
 233.233.0.0/16
 ```
+
+#### 编译安装最新版
+
+安装依赖：
+`apt install --no-install-recommends gettext build-essential autoconf libtool libpcre3-dev asciidoc xmlto libev-dev libc-ares-dev automake`
+
+拉取最新：
+```
+git clone https://github.com/shadowsocks/shadowsocks-libev.git
+cd shadowsocks-libev
+git submodule update --init --recursive
+```
+
+编译：
+`./autogen.sh && ./configure && make`
+
+安装：
+`make install`
