@@ -88,6 +88,11 @@ vim /root/ss.acl
 安装依赖：
 `apt install --no-install-recommends gettext build-essential autoconf libtool libpcre3-dev asciidoc xmlto libev-dev libc-ares-dev automake`
 
+```apt install --no-install-recommends autoconf automake \
+    debhelper pkg-config asciidoc xmlto libpcre3-dev apg pwgen rng-tools \
+    libev-dev libc-ares-dev dh-autoreconf libsodium-dev libmbedtls-dev
+```
+
 拉取最新：
 ```
 git clone https://github.com/shadowsocks/shadowsocks-libev.git
