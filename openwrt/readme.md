@@ -2,8 +2,10 @@
 
 root@MyAP:~# `crontab -e`
   ```
-  #凌晨3点开启所有网络（包括访客）
-  00 03 * * * /sbin/wifi up
+  #凌晨5点关闭所有WIFI网络（因为直接开启会出现一些不可预知的结果，所以先关闭一分钟，再开启）
+  00 05 * * * /sbin/wifi down
+  #凌晨5点零1开启所有网络（包括访客）
+  01 05 * * * /sbin/wifi up
   #下午6点半关闭访客网络
   30 18 * * * /sbin/ifconfig wlan9Guest down
   ```
