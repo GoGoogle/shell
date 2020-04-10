@@ -9,10 +9,14 @@ if [ "$#" -eq 0 ]; then
     exit 1
 fi
 
+#install new version mtg
 wget -O mtg https://github.com/9seconds/mtg/releases/latest/download/mtg-linux-amd64 &&  chmod +x ./mtg
-sleep 2s
+
+mtgfile=./mtg
+if [ ! -f "$mtgfile" ]; then
 kill $(ps aux --sort=start_time | grep mtg | awk 'NR==1{print $2}')
 sleep 2s
 ./mtg run -b0.0.0.0:$1 $(./mtg generate-secret secured) >/dev/null &
 sleep 2s
 echo $(ps aux --sort=start_time | grep mtg | awk 'NR==1{print $NF}')
+fi
