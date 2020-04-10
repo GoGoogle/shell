@@ -11,7 +11,8 @@ fi
 
 #install new version mtg
 wget -O mtg https://github.com/9seconds/mtg/releases/latest/download/mtg-linux-amd64 &&  chmod +x ./mtg
-
+echo "waiting download mtg"
+sleep 20s
 mtgfile=./mtg
 if [ ! -f "$mtgfile" ]; then
 kill $(ps aux --sort=start_time | grep mtg | awk 'NR==1{print $2}')
