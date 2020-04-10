@@ -2,6 +2,7 @@
 #一键脚本
 #by BMWCTO 14:54 2019/12/4
 #使用方式：./one_key_mtg.sh 端口
+#curl https://raw.githubusercontent.com/GoGoogle/shell/master/MTProxy/one_key_mtg.sh -o one_key_mtg.sh;chmod +x one_key_mtg.sh;./one_key_mtg.sh port
 
 if [ "$#" -eq 0 ]; then
     echo "Usage: $(basename $0) <port>"
