@@ -10,7 +10,7 @@ if [ "$#" -eq 0 ]; then
 fi
 
 #install new version mtg
-wget -O mtg https://github.com/9seconds/mtg/releases/latest/download/mtg-linux-amd64 &&  chmod +x ./mtg
+wget -b -O mtg https://github.com/9seconds/mtg/releases/latest/download/mtg-linux-amd64 && chmod +x ./mtg
 echo "waiting download mtg"
 sleep 20s
 mtgfile=./mtg
