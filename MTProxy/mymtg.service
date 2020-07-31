@@ -1,0 +1,17 @@
+[Unit]
+Description=MyMtg(https://github.com/9seconds/mtg)
+After=network.target
+# wget -O mtg https://github.com/9seconds/mtg/releases/latest/download/mtg-linux-amd64 && chmod +x ./mtg
+# wget -O /lib/systemd/system/mymtg.service https://git.io/JJakh && systemctl enable mymtg && systemctl start mymtg && systemctl status mymtg
+
+[Service]
+Type=simple
+User=root
+Group=root
+LimitNOFILE=32761
+ExecStart=/root/mtg run -b0.0.0.0:996 --public-ipv4 1.2.3.4:996 dd065c63129eb11d2a8e15c43a5e76bf13
+#$ mtg generate-secret secured
+
+
+[Install]
+WantedBy=multi-user.target
