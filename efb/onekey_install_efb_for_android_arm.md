@@ -45,7 +45,8 @@
             - nnn'>~/.ehforwarderbot/profiles/default/blueset.telegram/config.yaml
     ```
 
-    > xxx:yyy即tgbot的token，nnn即自己的TGID  
+    > xxx:yyy即tgbot的token，nnn即自己的TGID，可添加多个管理员ID  
+    > 除第一排主ID能完全控制bot外，其余ID都可以发言  
     > 还可以单独添加 socks5 代理：  
 
     ```yaml
